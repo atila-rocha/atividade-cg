@@ -1,3 +1,33 @@
 [gd_scene format=3 uid="uid://d1mimb68n7y7q"]
 
-[node name="Node3D" type="Node3D" unique_id=1277203699]
+[ext_resource type="Script" uid="uid://dxtc4n7v0r6xe" path="res://scenes/spring_arm_3d.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bwiefri44vsy2" path="res://scenes/player.gd" id="1_g2els"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_77sha"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5adxg"]
+material = SubResource("StandardMaterial3D_3vyb7")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_77sha"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1571037911]
+script = ExtResource("1_g2els")
+SPEED = 5.0
+JUMP_VELOCITY = 4.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1688260126]
+shape = SubResource("BoxShape3D_77sha")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2136939373]
+mesh = SubResource("BoxMesh_5adxg")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1172542300]
+shape = SubResource("SphereShape3D_77sha")
+spring_length = 5.0
+margin = 0.2
+script = ExtResource("1_3vyb7")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1429002271]
